@@ -1,8 +1,63 @@
-# Autor: Michael Schönburg
-# Quick and dirty-Skript, um AnyDesk-Clients (nicht Host) (z. B. von Labitzke) zu finden und löschen
+<#
+.SYNOPSIS
+    Get-FileExistent
+.DESCRIPTION
+    Quick and dirty-Skript, um AnyDesk-Clients (nicht Host) (z. B. von Labitzke) zu finden und löschen
+.INPUTS
+    Coming soon
+.OUTPUTS
+    Coming soon
+.NOTES
+    Author: Michael Schoenburg
+        
+    This projects code loosely follows the PowerShell Practice and Style guide, as well as Microsofts PowerShell scripting performance considerations.
+    Style guide: https://poshcode.gitbook.io/powershell-practice-and-style/
+    Performance Considerations: https://docs.microsoft.com/en-us/powershell/scripting/dev-cross-plat/performance/script-authoring-considerations?view=powershell-7.1
+.LINK
+    https://github.com/MichaelSchoenburg/Get-FileExistent/
+#>
+
+#-----------------------------------------------------------------------------------------------------------------
+#region RULES
+
+# Rules/Conventions:
+
+#     # This is a comment related to the following command
+
+#     <# 
+#         This is a comment related to the next couple commands (most times a caption for a section)
+#     #>
+
+# "This is a Text containing $( $variable(s) )"
+
+# 'This is a text without variable(s)'
+
+# Variables available in the entire script start with a capital letter
+# $ThisIsAGlobalVariable
+
+# Variables available only locally e. g. in a function start with a lower case letter
+# $thisIsALocalVariable
+
+# Assign output to $null to suppress it. E. g. $null = [System.Reflection.Assembly]::LoadWithPartialName( "System.Windows.Forms" )
+
+#endregion RULES
+#-----------------------------------------------------------------------------------------------------------------
+#region INITIALIZATION
+
+#endregion INITIALIZATION
+#-----------------------------------------------------------------------------------------------------------------
+#region DECLARATIONS
 
 $Found = $false
 $Folders  = "C:\Program Files", "C:\Program Files (x86)", "C:\ProgramData", "C:\TSD.CenterVision"
+
+#endregion DECLARATIONS
+#-----------------------------------------------------------------------------------------------------------------
+#region FUNCTIONS
+
+#endregion FUNCTIONS
+#-----------------------------------------------------------------------------------------------------------------
+#region EXECUTION
 
 foreach ($folder in $Folders) {
     $files = @()
@@ -42,3 +97,7 @@ if ($Found -eq $true) {
 } else {
     Exit 0
 }
+
+#endregion EXECUTION
+#-----------------------------------------------------------------------------------------------------------------
+#region EXECUTION
