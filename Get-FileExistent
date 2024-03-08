@@ -6,7 +6,8 @@
 .INPUTS
     Coming soon
 .OUTPUTS
-    Coming soon
+    Exitcode 0 = file hasn't been found
+    Exitcode 1 = file has been found
 .NOTES
     Author: Michael Schoenburg
         
@@ -93,7 +94,7 @@ foreach ($folder in $Folders) {
 }
 
 if ($Found -eq $true) {
-    Exit 2
+    Exit 1
 } else {
     Exit 0
 }
