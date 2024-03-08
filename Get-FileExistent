@@ -1,0 +1,44 @@
+# Autor: Michael Schönburg
+# Quick and dirty-Skript, um AnyDesk-Clients (nicht Host) (z. B. von Labitzke) zu finden und löschen
+
+$Found = $false
+$Folders  = "C:\Program Files", "C:\Program Files (x86)", "C:\ProgramData", "C:\TSD.CenterVision"
+
+foreach ($folder in $Folders) {
+    $files = @()
+    $files = Get-ChildItem -Path $folder -File -Recurse -ErrorAction SilentlyContinue -Force
+    foreach ($f in $files) {
+        $Info = Get-ItemProperty -Path $f.FullName -Name VersionInfo
+        if ($Info -like '*AnyDesk*') {
+            Write-Host "Found in $($f.FullName)"
+            $Info
+            $Found = $true
+
+            Write-Host "Deleting $($f.FullName))"
+            Remove-Item -Path $f.FullName -Force
+        }
+    }
+}
+
+$Folders = Get-ChildItem -Path "C:\Users" -Directory -ErrorAction SilentlyContinue -Force
+foreach ($folder in $Folders) {
+    $files = @()
+    $files = Get-ChildItem -Path "$($folder.FullName)\Downloads" -File -Recurse -ErrorAction SilentlyContinue -Force
+    foreach ($f in $files) {
+        $Info = Get-ItemProperty -Path $f.FullName -Name VersionInfo
+        if ($Info -like '*AnyDesk*') {
+            Write-Host "Found in $($f.FullName)"
+            $Info
+            $Found = $true
+
+            Write-Host "Deleting $($f.FullName))"
+            Remove-Item -Path $f.FullName -Force
+        }
+    }
+}
+
+if ($Found -eq $true) {
+    Exit 2
+} else {
+    Exit 0
+}
